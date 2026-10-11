@@ -1,0 +1,40 @@
+name: Publicar en Instagram
+
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publicar
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Publicar lo que ya llegó a su hora
+        run: python3 ig.py agenda
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+
+      - name: Guardar lo publicado
+        if: always()
+        run: |
+          if git diff --quiet -- publicadas.json; then
+            echo "Nada cambió en publicadas.json"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add publicadas.json
+            git commit -m "Lo publicado, al día"
+            # Si el repo cambió mientras corría (una agenda nueva), se trae antes de subir.
+            git pull --rebase
+            git push
+          fi

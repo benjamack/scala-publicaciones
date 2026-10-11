@@ -1,0 +1,209 @@
+{
+  "repo": "benjamack/scala-publicaciones",
+  "base": "https://benjamack.github.io/scala-publicaciones/",
+  "tarde_maxima_horas": 36,
+  "scala": {
+    "palabra": "scala",
+    "dias": 7,
+    "mensaje": "Acá tenés el link: scala.fit\nDejás tu mail y listo. El acceso a Scala te llega en una de las próximas tandas, y mientras dure la beta no se cobra. Por ahora, sólo iPhone."
+  },
+  "piezas": [
+    {
+      "id": "hoy-01",
+      "cuando": "2026-10-13T19:00:00-03:00",
+      "tipo": "reel",
+      "archivos": [
+        "reel.mp4"
+      ],
+      "tapa": "tapa.jpg",
+      "caption": "Si un día no llegás, Scala pasa esa sesión al primer día libre que marcaste. No tenés que mover nada.\n\nAbrís la app y te lo dice en Entreno: \"Pasé la natación del martes al sábado.\" Si ese día no te sirve, tocás Deshacer y vuelve a donde estaba.\n\nLos días los elegís vos: Scala usa sólo los que marcaste para entrenar. Así tu plan de entrenamiento sigue a la semana que tuviste.\n\nLo que se ve es la app con datos de ejemplo. Los accesos salen de a tandas desde el domingo 11 de octubre.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#plandeentrenamiento #triatlon #natacion",
+      "alt": "Sobre fondo claro se lee \"No llegaste al martes\". En una semana dibujada de 7 días, la natación del martes salta sola al sábado y el coach contesta \"La pasé al sábado\". Sube el aviso de la app, con el botón Deshacer, y cierra con la marca de Scala y \"Anotate en scala.fit\".",
+      "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
+    },
+    {
+      "id": "asi-funciona-01",
+      "cuando": "2026-10-15T19:00:00-03:00",
+      "tipo": "reel",
+      "archivos": [
+        "reel.mp4"
+      ],
+      "tapa": "tapa.jpg",
+      "caption": "El alta de Scala no te pide una cuenta de entrada. Te hace una pregunta: ¿qué querés lograr?\n\nHay 6 objetivos para elegir. Uno es correr una carrera de 5, 10, 21 o 42 km, o de trail. Los otros no son carreras: dormir mejor o ganar músculo, por ejemplo. Si el tuyo no está, lo contás con tus palabras.\n\nElegís uno y lo ves dibujado: una curva, el punto de hoy y la meta. De ahí sale tu plan de entrenamiento.\n\nLo que se ve es la app con datos de ejemplo. Los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#plandeentrenamiento #objetivos #running",
+      "alt": "Sobre fondo oscuro se lee \"Antes de pedirte una cuenta, Scala te hace una pregunta\". Se arma la marca de Scala arriba de la primera pantalla de la app: \"¿Qué querés lograr?\", con 6 objetivos para elegir. Se elige \"Correr una carrera\" y el objetivo queda dibujado en una curva, con el punto de hoy y la meta encendida en lima. El coach dice \"Los peldaños los armo yo\". Cierra con la marca y \"Anotate en scala.fit\".",
+      "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
+    },
+    {
+      "id": "sin-planilla-01",
+      "cuando": "2026-10-17T19:00:00-03:00",
+      "tipo": "carrusel",
+      "archivos": [
+        "01.jpg",
+        "02.jpg",
+        "03.jpg",
+        "04.jpg",
+        "05.jpg",
+        "06.jpg",
+        "07.jpg"
+      ],
+      "tapa": null,
+      "caption": "Lunes, 7 de la mañana. No tenés reloj y querés saber qué te toca hoy.\n\nAbrís Scala y está la sesión del día: fuerza, 52 minutos. El miércoles corrés cuatro pasadas y, cuando terminás, tocás \"Ya la hice\". La comida entra con una foto. Y el viernes ves tus 7.400 pasos, que los cuenta el teléfono, contra tu normal.\n\nSin reloj no hay sueño, recuperación, energía ni los hallazgos que salen de la noche: eso no se mide con un teléfono. Tu plan de entrenamiento lo tenés igual, día por día.\n\nLo que se ve es la app con datos de ejemplo. Los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#plandeentrenamiento #entrenamientodefuerza #running",
+      "alt": "Carrusel de siete placas sobre fondo oscuro, con una fila de los siete días que avanza de lunes a domingo. El lunes el coach dice \"Hoy te toca fuerza\" y se ve la sesión, de 52 minutos. Siguen el botón \"Ya la hice\", la hoja para registrar la comida con una foto y los 7.400 pasos del día contra lo normal de esa persona. Una placa dice lo que sin reloj no hay. Cierra con \"Para saber qué hacer hoy no hace falta un reloj\" y \"Anotate en scala.fit\".",
+      "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
+    },
+    {
+      "id": "hoy-02",
+      "cuando": "2026-10-19T19:00:00-03:00",
+      "tipo": "reel",
+      "archivos": [
+        "reel.mp4"
+      ],
+      "tapa": "tapa.jpg",
+      "caption": "Son las 19 y no llegás a entrenar. En Scala tocás \"Hoy no la puedo hacer\" y elegís qué pasó.\n\nLa sesión queda protegida: no cuenta en contra.\n\nUn plan de entrenamiento tiene que aguantar un día así.\n\nLo que se ve es la app con datos de ejemplo. Los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#plandeentrenamiento #entrenamiento #triatlon",
+      "alt": "Sobre fondo claro se lee \"Son las 19 y hoy no llegás\". Se toca el botón \"Hoy no la puedo hacer\" de la app y aparece la hoja \"¿Qué pasó?\", con cinco motivos. El coach contesta \"La protegí: no cuenta en contra\" y sube la tarjeta de la sesión protegida. Cierra con la marca de Scala y \"Anotate en scala.fit\".",
+      "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
+    },
+    {
+      "id": "asi-funciona-02",
+      "cuando": "2026-10-21T19:00:00-03:00",
+      "tipo": "reel",
+      "archivos": [
+        "reel.mp4"
+      ],
+      "tapa": "tapa.jpg",
+      "caption": "En Scala la comida se anota con una foto. El coach la desglosa ingrediente por ingrediente, con sus porciones y sus macros.\n\n¿No tenés el plato adelante? Contala hablando, o escribila. Podés mandar el día entero de una vez, por ejemplo \"desayuné café con dos tostadas, almorcé milanesa con puré\", y el coach lo separa en comidas.\n\nSi una porción no cierra, tocás el ingrediente y la corregís.\n\nPara registrar comidas no hace falta un reloj: alcanza con tu teléfono.\n\nLo que se ve es la app con datos de ejemplo, y las porciones son estimadas. Los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#registrodecomidas #macros #plandeentrenamiento",
+      "alt": "Sobre fondo oscuro se lee \"Comiste. Anotalo de tres formas, sin abrir una planilla\". Sube la hoja de la app para registrar una comida, con una tecla para la foto y otras dos para contarla o escribirla. Se toca Foto. Aparece un plato de bife con papas al horno y ensalada, y la app lo desglosa en 4 ingredientes, cada uno con sus calorías. Después se ven las otras dos formas. Cierra con la marca de Scala y \"Anotate en scala.fit\".",
+      "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
+    },
+    {
+      "id": "hoy-03",
+      "cuando": "2026-10-25T19:00:00-03:00",
+      "tipo": "reel",
+      "archivos": [
+        "reel.mp4"
+      ],
+      "tapa": "tapa.jpg",
+      "caption": "Le decís a Scala a dónde querés llegar y lo ves dibujado: una curva, el punto de hoy y la meta.\n\nPuede ser tu primer triatlón o algo que no sea una carrera.\n\nCon eso Scala te arma el plan de entrenamiento, y cada día te dice qué toca. Hoy, 60 minutos de bici y trote.\n\nLo que se ve es la app con datos de ejemplo. Los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#triatlon #primertriatlon #plandeentrenamiento",
+      "alt": "Sobre fondo claro se lee \"Querés hacer tu primer triatlón\". Se dibuja la curva del objetivo, con el punto de hoy y la meta encendida en lima. El coach dice \"Hoy te toca bici y trote\" y sube la tarjeta del entreno del día, de 60 minutos. Cierra con la marca de Scala y \"Anotate en scala.fit\".",
+      "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
+    },
+    {
+      "id": "asi-funciona-03",
+      "cuando": "2026-10-27T19:00:00-03:00",
+      "tipo": "reel",
+      "archivos": [
+        "reel.mp4"
+      ],
+      "tapa": "tapa.jpg",
+      "caption": "Si entrenás sin reloj, Scala arranca con lo que ya midió tu teléfono y te dice qué toca cada día.\n\nEn el alta te pide permiso para leer tu iPhone. Con tus pasos de los últimos 90 días sabe desde dónde empezás.\n\nCuando terminás la sesión, tocás \"Ya la hice\" y queda hecha. En el ejemplo son 45 minutos de pasadas.\n\nSin reloj hay menos datos: Scala no mide tu sueño ni tu recuperación. El plan de entrenamiento y lo de cada día los tenés igual.\n\nLo que se ve es la app con datos de ejemplo. Los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#entrenarsinreloj #plandeentrenamiento #running",
+      "alt": "Sobre fondo oscuro se lee \"Terminaste de entrenar y no tenés reloj. ¿Cómo se entera Scala?\". El coach dice \"Dejame leer tu iPhone\" y la app muestra 92 días de pasos leídos del teléfono. Después aparece la sesión del día, con sus 3 partes, y se toca la tecla \"Ya la hice\": la sesión queda hecha. Cierra con la marca de Scala y \"Anotate en scala.fit\".",
+      "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
+    },
+    {
+      "id": "sin-planilla-02",
+      "cuando": "2026-10-29T19:00:00-03:00",
+      "tipo": "carrusel",
+      "archivos": [
+        "01.jpg",
+        "02.jpg",
+        "03.jpg",
+        "04.jpg",
+        "05.jpg",
+        "06.jpg",
+        "07.jpg"
+      ],
+      "tapa": null,
+      "caption": "La misma semana, dos veces: una en una planilla y otra en Scala. El martes no llegaste a nadar.\n\nEn la planilla, ese casillero queda vacío hasta que lo muevas vos. En Scala abrís la app el miércoles y ya está: \"Pasé la natación del martes al sábado.\" Si ese día no te sirve, tocás Deshacer.\n\nScala usa sólo los días que marcaste para entrenar, y la sesión va al primero que tengas libre. Así tu plan de entrenamiento sigue a la semana que tuviste.\n\nLo que se ve es un ejemplo. Los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#plandeentrenamiento #triatlon #natacion",
+      "alt": "Carrusel de siete placas sobre fondo oscuro. Dos filas muestran los siete días de la misma semana: arriba, una planilla de casilleros; abajo, la semana en Scala. El martes queda sin hacer en las dos. El miércoles el coach dice \"La pasé al sábado\" y, en la fila de Scala, la natación pasa del martes al sábado; en la planilla el martes sigue vacío. Cierra con \"Una planilla quieta es peor que no tener plan\" y \"Anotate en scala.fit\".",
+      "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
+    },
+    {
+      "id": "hoy-04",
+      "cuando": "2026-10-31T19:00:00-03:00",
+      "tipo": "reel",
+      "archivos": [
+        "reel.mp4"
+      ],
+      "tapa": "tapa.jpg",
+      "caption": "Con tu cuenta de Garmin conectada, Scala le manda sola la semana a tu Garmin. Salís apurado y la sesión ya está ahí.\n\nLa manda cuando abrís la app, sin que toques nada. El día que no la abrís, el trote de 40 minutos en zona 2 ya lo tenés en la muñeca.\n\nCuando volvés, llega la actividad y la sesión se tilda sola.\n\nEs tu plan de entrenamiento para correr, puesto en tu Garmin.\n\nLo que se ve es la app con datos de ejemplo. Los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#garmin #running #plandeentrenamiento",
+      "alt": "Sobre fondo claro se lee \"Saliste a correr sin abrir la app\", mientras se traza un recorrido. El coach contesta \"La sesión ya estaba en tu Garmin\" y sube la tarjeta del trote de hoy, de 40 minutos, que dice \"En tu reloj\". Cierra con la marca de Scala y \"Anotate en scala.fit\".",
+      "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
+    },
+    {
+      "id": "asi-funciona-04",
+      "cuando": "2026-11-02T19:00:00-03:00",
+      "tipo": "reel",
+      "archivos": [
+        "reel.mp4"
+      ],
+      "tapa": "tapa.jpg",
+      "caption": "Cuando terminás el alta de Scala, tu primera semana ya está armada. No le escribiste a nadie.\n\nElegís el objetivo y la fecha, y tocás un botón. Scala lee tus últimos 90 días, parte el objetivo en fases y te arma el plan de entrenamiento.\n\nTarda un poco, y mientras tanto te cuenta qué leyó.\n\nDespués podés mover los días a mano, o pedírselo al coach.\n\nLo que se ve es la app con datos de ejemplo. Los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#plandeentrenamiento #mediamaraton #21k",
+      "alt": "Sobre fondo oscuro se lee \"No le escribiste a nadie. Tu primera semana ya está armada\". Se ve el objetivo, una carrera de 21 km, y se toca la tecla \"Armar mis 10 semanas\". Mientras el coach piensa, la app va tildando: \"Leí tus 92 días\", \"Partí tu objetivo en cuatro fases\", \"Armé tu primera semana\". Se enciende la meta en lima sobre \"Diez semanas. Empezás el lunes\", y sube la primera sesión, un rodaje suave de 35 minutos. Cierra con la marca de Scala y \"Anotate en scala.fit\".",
+      "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
+    },
+    {
+      "id": "sin-planilla-03",
+      "cuando": "2026-11-04T19:00:00-03:00",
+      "tipo": "carrusel",
+      "archivos": [
+        "01.jpg",
+        "02.jpg",
+        "03.jpg",
+        "04.jpg",
+        "05.jpg",
+        "06.jpg"
+      ],
+      "tapa": null,
+      "caption": "El miércoles no hiciste nada: ni entreno, ni comida registrada, ni hábitos. El domingo, la semana cerró igual.\n\nEn Scala un día está completo cuando están el entreno (o el descanso), la comida y tus hábitos: ahí se enciende la marca. La del miércoles quedó apagada. El jueves abriste la app y estaba la sesión de ese día: 60 minutos de bici y trote.\n\nEl domingo, \"Tu semana\" te muestra los días que completaste. En este ejemplo, cuatro de siete. Vos ponés el objetivo, y tu plan de entrenamiento se mira por semana.\n\nLo que se ve es la app con datos de ejemplo. Los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#plandeentrenamiento #habitos #entrenamiento",
+      "alt": "Carrusel de seis placas sobre fondo oscuro. Una fila con los siete días de la semana, cada uno con la marca de Scala: tres peldaños y un punto que se enciende cuando el día está completo. El lunes se enciende y el miércoles queda apagado. El jueves el coach dice \"Hoy te toca bici y trote\". El domingo se lee \"Cuatro días completos\". Cierra con \"Lo que cuenta es la semana, no el día\" y \"Anotate en scala.fit\".",
+      "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
+    },
+    {
+      "id": "hoy-05",
+      "cuando": "2026-11-06T19:00:00-03:00",
+      "tipo": "reel",
+      "archivos": [
+        "reel.mp4"
+      ],
+      "tapa": "tapa.jpg",
+      "caption": "Entrenaste, registraste la comida y cumpliste tus hábitos. En Scala eso es un día completo, y la marca se enciende.\n\nMirá la marca: cada peldaño es una de las tres cosas, y arriba está la meta.\n\nNo necesitás un día especial. Tampoco te va a pasar todos los días: lo que cuenta es la semana.\n\nLas tres salen del mismo plan de entrenamiento, el que Scala arma con tu objetivo.\n\nLo que se ve es la app con datos de ejemplo. Los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#plandeentrenamiento #habitos #entrenamiento",
+      "alt": "Sobre fondo claro se lee \"Hoy no hiciste nada especial\". La marca de Scala se enciende de a un peldaño (entreno, comida, hábitos) hasta que se prende la meta. El coach dice \"Día completo\" y aparece el chip de la app con esas dos palabras. Cierra con \"Anotate en scala.fit\".",
+      "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
+    },
+    {
+      "id": "asi-funciona-05",
+      "cuando": "2026-11-08T19:00:00-03:00",
+      "tipo": "reel",
+      "archivos": [
+        "reel.mp4"
+      ],
+      "tapa": "tapa.jpg",
+      "caption": "En Scala elegís en qué día va cada sesión. Cada una tiene los 7 días de la semana: tocás uno y queda así todas las semanas.\n\nSi un día no llegás, la sesión pasa sola al primer día libre que marcaste. Te lo dice en Entreno cuando abrís la app: \"Pasé la natación del martes al domingo.\"\n\nSi ese día no te sirve, tocás Deshacer y vuelve a donde estaba.\n\nLos días de tu plan de entrenamiento los decidís vos. De acomodar la semana se ocupa Scala.\n\nLo que se ve es la app con datos de ejemplo. Los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#plandeentrenamiento #triatlon #natacion",
+      "alt": "Sobre fondo oscuro se lee \"Tu plan dice lunes. Pero los lunes no podés\". En la app, la sesión de natación tiene los 7 días de la semana: se toca el martes y queda en martes. Después se lee \"Y si un martes no llegás\": la natación pasa sola del martes 29 al domingo 4, y la app avisa \"Pasé la natación del martes al domingo\", con el botón Deshacer. Se toca Deshacer y vuelve al martes. Cierra con la marca de Scala y \"Anotate en scala.fit\".",
+      "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
+    },
+    {
+      "id": "hoy-06",
+      "cuando": "2026-11-12T19:00:00-03:00",
+      "tipo": "reel",
+      "archivos": [
+        "reel.mp4"
+      ],
+      "tapa": "tapa.jpg",
+      "caption": "Para saber qué hacer hoy no hace falta un reloj. Con tu iPhone, Scala te dice qué toca: hoy, fuerza.\n\nVes tus pasos contra tu normal. Y cuando terminás la sesión, tocás \"Ya la hice\".\n\nSin reloj hay cosas que no se miden, como el sueño. Tu plan de entrenamiento lo tenés igual.\n\nLo que se ve es la app con datos de ejemplo. Los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#entrenamientodefuerza #gimnasio #plandeentrenamiento",
+      "alt": "Sobre fondo claro se lee \"Entrenás sin reloj. ¿Qué toca hoy?\". El coach contesta \"Hoy te toca fuerza\" y sube la tarjeta de la sesión, de 52 minutos. Después aparecen los pasos del día, 7.400, contra lo normal de esa persona. Cierra con la marca de Scala y \"Anotate en scala.fit\".",
+      "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
+    },
+    {
+      "id": "asi-funciona-06",
+      "cuando": "2026-11-14T19:00:00-03:00",
+      "tipo": "reel",
+      "archivos": [
+        "reel.mp4"
+      ],
+      "tapa": "tapa.jpg",
+      "caption": "En Scala los hábitos salen de tu objetivo. Vos decís a dónde querés llegar y la lista la arma el plan.\n\nEl objetivo puede ser una carrera o algo que no lo sea, como dormir mejor.\n\nLos que se pueden medir se tildan solos: los 10.000 pasos los cuenta tu teléfono. El sueño, si usás reloj.\n\nLos demás los marcás vos con un toque, ahí mismo o en el cierre del día. Y podés sumar uno tuyo.\n\nLo que se ve es la app con datos de ejemplo. Los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#habitos #dormirmejor #plandeentrenamiento",
+      "alt": "Sobre fondo oscuro se lee \"Elegiste dormir mejor. No armaste ninguna lista de hábitos\". Debajo del objetivo aparecen 3 hábitos de la app, y una tarjeta dice que los pidió el plan de Dormir mejor. El de 10.000 pasos dice \"se tilda solo\", y más tarde aparece tildado, con 10.320 pasos. El de dos litros de agua dice \"Lo contás vos\" y se marca con un toque. Cierra con la marca de Scala y \"Anotate en scala.fit\".",
+      "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
+    }
+  ]
+}
