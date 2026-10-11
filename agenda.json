@@ -75,6 +75,18 @@
       "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
     },
     {
+      "id": "con-benja-01",
+      "cuando": "2026-10-23T19:00:00-03:00",
+      "tipo": "reel",
+      "archivos": [
+        "reel.mp4"
+      ],
+      "tapa": "tapa.jpg",
+      "caption": "Benja quiso preparar un Ironman y no encontró una app que le sirviera. Armó Scala.\n\nVos le decís a dónde querés llegar: una carrera, o lo que quieras. Scala te arma la semana: plan de entrenamiento, comida y hábitos. Y te dice qué toca hoy. Con cualquier wearable o sólo con el teléfono.\n\nLo que se ve de la app son datos de ejemplo. Estamos en beta y los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#plandeentrenamiento #triatlon #ironman",
+      "alt": "Benja, sentado en un sillón con luz de lámpara, cuenta por qué armó Scala. Entre una frase y otra se ven piezas de la app sobre fondo negro: la pregunta «¿Qué querés lograr?» con sus opciones, un objetivo dibujado como una curva, sus días hacia atrás, las opciones de con qué te medís, una semana en la que la natación pasa sola del martes al sábado, y la sesión hecha, una comida y los pasos que se tildan solos hasta que la marca enciende el día completo. Cierra con la marca de Scala y «Anotate en scala.fit».",
+      "ok": "Benja, 2026-10-11 («te doy el ok para publicar los 2 reels conmigo a cámara»)"
+    },
+    {
       "id": "hoy-03",
       "cuando": "2026-10-25T19:00:00-03:00",
       "tipo": "reel",
@@ -204,6 +216,18 @@
       "caption": "En Scala los hábitos salen de tu objetivo. Vos decís a dónde querés llegar y la lista la arma el plan.\n\nEl objetivo puede ser una carrera o algo que no lo sea, como dormir mejor.\n\nLos que se pueden medir se tildan solos: los 10.000 pasos los cuenta tu teléfono. El sueño, si usás reloj.\n\nLos demás los marcás vos con un toque, ahí mismo o en el cierre del día. Y podés sumar uno tuyo.\n\nLo que se ve es la app con datos de ejemplo. Los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#habitos #dormirmejor #plandeentrenamiento",
       "alt": "Sobre fondo oscuro se lee \"Elegiste dormir mejor. No armaste ninguna lista de hábitos\". Debajo del objetivo aparecen 3 hábitos de la app, y una tarjeta dice que los pidió el plan de Dormir mejor. El de 10.000 pasos dice \"se tilda solo\", y más tarde aparece tildado, con 10.320 pasos. El de dos litros de agua dice \"Lo contás vos\" y se marca con un toque. Cierra con la marca de Scala y \"Anotate en scala.fit\".",
       "ok": "Benja, 2026-10-11 («TODO OK», incluso al posteo automático)"
+    },
+    {
+      "id": "con-benja-03",
+      "cuando": "2026-11-16T19:00:00-03:00",
+      "tipo": "reel",
+      "archivos": [
+        "reel.mp4"
+      ],
+      "tapa": "tapa.jpg",
+      "caption": "A Benja se le fue un martes y no llegó a nadar. Cuando abrió Scala, la sesión ya estaba en el sábado.\n\nEl plan de entrenamiento se acomoda a tu semana: la sesión que no hiciste pasa al primer día libre que marcaste, y la app te lo dice, con un botón para deshacerlo.\n\nLo que se ve de la app es un ejemplo. Los accesos salen de a tandas.\n\nAnotate en scala.fit. O comentá SCALA y te mandamos el link.\n\n#plandeentrenamiento #triatlon #natacion",
+      "alt": "Benja, sentado en un sillón con luz de lámpara, cuenta que no llegó a la natación del martes. Entre una frase y otra se ve una semana dibujada en siete días: la natación del martes pasa sola al sábado y el coach dice «La pasé al sábado». Después aparece el aviso de la app, «Pasé la natación del martes al sábado», con su botón Deshacer. Benja dice que el sábado nadó, que él entrena y el resto lo lleva Scala. Cierra con la marca de Scala y «Anotate en scala.fit».",
+      "ok": "Benja, 2026-10-11 («te doy el ok para publicar los 2 reels conmigo a cámara»)"
     }
   ]
 }
