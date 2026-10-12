@@ -54,4 +54,10 @@ jobs:
             echo "Esta corrida no esperó (${espero} s): el entorno «espera» no tiene su temporizador. No se pide la siguiente."
             exit 0
           fi
-          gh workflow run publicar.yml --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME"
+          # La API de GitHub a veces contesta 502: se reintenta, y si no sale, el cron retoma la cadena.
+          # Que falle este paso no es que falló la publicación: no pone la corrida en rojo.
+          for intento in 1 2 3; do
+            if gh workflow run publicar.yml --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME"; then exit 0; fi
+            sleep 15
+          done
+          echo "No se pudo pedir la próxima corrida. La retoma el cron."
