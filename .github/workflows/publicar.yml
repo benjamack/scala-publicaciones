@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: publicar
@@ -14,6 +15,9 @@ concurrency:
 
 jobs:
   publicar:
+    # El entorno «espera» tiene un temporizador de 5 minutos: la corrida espera ahí,
+    # sin ocupar una máquina, y recién después arranca.
+    environment: espera
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -38,3 +42,16 @@ jobs:
             git pull --rebase
             git push
           fi
+
+      - name: Pedir la próxima corrida
+        if: ${{ !cancelled() && vars.CADENA != 'off' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          creada=$(gh run view "$GITHUB_RUN_ID" --repo "$GITHUB_REPOSITORY" --json createdAt -q .createdAt)
+          espero=$(( $(date +%s) - $(date -d "$creada" +%s) ))
+          if [ "$espero" -lt 240 ]; then
+            echo "Esta corrida no esperó (${espero} s): el entorno «espera» no tiene su temporizador. No se pide la siguiente."
+            exit 0
+          fi
+          gh workflow run publicar.yml --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME"

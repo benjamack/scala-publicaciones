@@ -18,7 +18,10 @@ Uso (en esta carpeta)
 Uso (en el repo público; GitHub Actions corre "agenda")
   python3 ig.py agenda [--carpeta .] [--ahora <ISO>] [--en-seco]
                                      # publica como mucho UNA pieza que ya llegó a su hora y responde
-                                     # a los comentarios con SCALA. --en-seco no llama a la API ni escribe
+                                     # a quien comenta SCALA (en las últimas 30 publicaciones y en las
+                                     # historias activas) o la escribe por mensaje (sólo si el mensaje es
+                                     # la palabra; "por_mensaje": false en la agenda lo apaga).
+                                     # --en-seco no llama a la API ni escribe
   python3 ig.py publicar <id> [--carpeta .]
                                      # publica esa pieza ya, aunque no sea su hora (exige su OK)
   python3 ig.py probar <id> [--carpeta .]
@@ -28,7 +31,7 @@ Uso (en el repo público; GitHub Actions corre "agenda")
 El token sale de IG_ACCESS_TOKEN: del entorno y, si no está, del archivo .env de
 esta carpeta. No se imprime nunca y sólo viaja a graph.instagram.com. En un repo
 público tampoco se imprime ni se guarda el texto de un comentario ni quién lo
-escribió: sólo ids y cantidades.
+escribió: sólo ids y cantidades. Lo mismo vale para los mensajes.
 """
 
 import argparse
@@ -66,7 +69,9 @@ ESPERA_MAXIMA = 360           # 6 minutos
 INTENTOS_MAXIMOS = 3
 RESPUESTAS_POR_CORRIDA = 25
 PUBLICACIONES_A_MIRAR = 30
-DIAS_DE_PUBLICACIONES = 7
+CONVERSACIONES_A_MIRAR = 20
+HORAS_DE_CONVERSACION = 2     # sólo se abren las conversaciones actualizadas hace menos que esto
+HORAS_DE_MENSAJE = 23         # la ventana de Meta para responder un mensaje es de 24 horas
 
 
 class ErrorDeApi(Exception):
@@ -230,19 +235,36 @@ def verificar():
             print(f"  publicar         no se pudo comprobar · {error.mensaje.replace(token, '(token)')}")
 
     try:
-        medios = pedir(token, f"/{VERSION}/{cuenta}/media", {"fields": "id", "limit": 1},
+        medios = pedir(token, f"/{VERSION}/{cuenta}/media", {"fields": "id,comments_count", "limit": 1},
                        token_en_url=en_url)
-        primero = (medios.get("data") or [{}])[0].get("id")
+        primera = (medios.get("data") or [{}])[0]
+        primero = primera.get("id")
         if not primero:
             print("  comentarios      sin comprobar · la cuenta todavía no tiene publicaciones")
         else:
-            pedir(token, f"/{VERSION}/{primero}/comments", {"limit": 1}, token_en_url=en_url)
-            print("  comentarios      sí · puede leerlos y responderlos")
+            entregados = pedir(token, f"/{VERSION}/{primero}/comments", {"limit": 1},
+                               token_en_url=en_url).get("data") or []
+            contados = primera.get("comments_count")
+            if isinstance(contados, int) and contados > 0 and not entregados:
+                print("  comentarios      los cuenta y no los entrega · la app de Meta parece estar en modo "
+                      "desarrollo (sólo ve a quien tiene un rol en la app)")
+            else:
+                print("  comentarios      sí · puede leerlos y responderlos")
     except ErrorDeApi as error:
         if error.codigo in SIN_PERMISO:
             print("  comentarios      no · al token le falta el permiso instagram_business_manage_comments")
         else:
             print(f"  comentarios      no se pudo comprobar · {error.mensaje.replace(token, '(token)')}")
+
+    try:
+        pedir(token, f"/{VERSION}/{cuenta}/conversations", {"platform": "instagram", "limit": 1},
+              token_en_url=en_url)
+        print("  mensajes         sí · puede leer las conversaciones")
+    except ErrorDeApi as error:
+        if error.codigo in SIN_PERMISO:
+            print("  mensajes         no · al token le falta el permiso instagram_business_manage_messages")
+        else:
+            print(f"  mensajes         no se pudo comprobar · {error.mensaje.replace(token, '(token)')}")
 
     vence = leer_env().get("IG_TOKEN_EXPIRES_AT")
     if vence:
@@ -464,7 +486,7 @@ def permalink_de(cuenta, media_id):
 
 
 def publicaciones_recientes(cuenta):
-    medios = cuenta.leer(f"/{cuenta.id}/media", {"fields": "id,caption,timestamp",
+    medios = cuenta.leer(f"/{cuenta.id}/media", {"fields": "id,caption,timestamp,comments_count",
                                                   "limit": PUBLICACIONES_A_MIRAR})
     return medios.get("data") or []
 
@@ -571,60 +593,84 @@ def en_seco(agenda, estado, ahora):
         break
     if not hubo:
         print("No hay nada para publicar.")
-    print("Las respuestas de SCALA no se revisan en seco.")
+    print("Las respuestas de SCALA (comentarios, historias y mensajes) no se revisan en seco.")
     return 0
 
 
+class _TresFallos(Exception):
+    """Tres respuestas seguidas fallaron: se corta todo y se sigue en la próxima corrida."""
+
+
 def responder_scala(cuenta, agenda, estado, ahora):
-    """Le manda el link por privado a quien comentó la palabra. Del texto ajeno sólo
-    se compara con la palabra: no se guarda ni se imprime, ni quién lo escribió."""
+    """Le manda el link por privado a quien comentó la palabra, en las últimas publicaciones
+    (tengan la edad que tengan: el límite de Meta corre desde el comentario) y en las historias
+    activas. Del texto ajeno sólo se compara con la palabra: no se guarda ni se imprime, ni
+    quién lo escribió."""
     scala = agenda.get("scala")
     if not scala:
         return
     palabra = re.compile(r"\b" + re.escape(scala["palabra"]) + r"\b", re.IGNORECASE)
     dias = datetime.timedelta(days=scala.get("dias", 7))
     propio = cuenta.usuario.lower()
-    vistos = respondidos = fallos = 0
-    try:
-        for medio in publicaciones_recientes(cuenta):
+    vistos = respondidos = fallos = mudas = 0
+
+    def revisar(id_medio):
+        """Responde los comentarios de una publicación o historia y devuelve cuántos entregó Instagram."""
+        nonlocal vistos, respondidos, fallos
+        comentarios = cuenta.leer(f"/{id_medio}/comments",
+                                  {"fields": "id,text,timestamp,username", "limit": 50}).get("data") or []
+        for comentario in comentarios:
+            id_comentario = comentario.get("id")
+            if not id_comentario or id_comentario in estado.respondidos:
+                continue
+            if not palabra.search(comentario.get("text") or ""):
+                continue
+            if (comentario.get("username") or "").lower() == propio:
+                continue
             try:
-                if ahora - instante(medio["timestamp"]) > datetime.timedelta(days=DIAS_DE_PUBLICACIONES):
+                if ahora - instante(comentario["timestamp"]) >= dias:
                     continue
             except (KeyError, ValueError):
                 continue
-            comentarios = cuenta.leer(f"/{medio['id']}/comments",
-                                      {"fields": "id,text,timestamp,username", "limit": 50}).get("data") or []
-            for comentario in comentarios:
-                id_comentario = comentario.get("id")
-                if not id_comentario or id_comentario in estado.respondidos:
-                    continue
-                if not palabra.search(comentario.get("text") or ""):
-                    continue
-                if (comentario.get("username") or "").lower() == propio:
-                    continue
-                try:
-                    if ahora - instante(comentario["timestamp"]) >= dias:
-                        continue
-                except (KeyError, ValueError):
-                    continue
-                vistos += 1
-                if respondidos >= RESPUESTAS_POR_CORRIDA:
-                    continue
-                try:
-                    cuenta.mandar(f"/{cuenta.id}/messages",
-                                  {"recipient": {"comment_id": id_comentario},
-                                   "message": {"text": scala["mensaje"]}}, como_json=True)
-                except ErrorDeApi as error:
-                    if error.codigo in SIN_PERMISO or error.codigo in LIMITE_DE_LLAMADAS or error.codigo in TOKEN_INVALIDO:
-                        raise
-                    fallos += 1
-                    if fallos >= 3:
-                        print("SCALA: tres respuestas seguidas fallaron; se sigue en la próxima corrida.")
-                        return
-                    continue
-                respondidos += 1
-                estado.respondidos.append(id_comentario)
-                estado.guardar()
+            vistos += 1
+            if respondidos >= RESPUESTAS_POR_CORRIDA:
+                continue
+            try:
+                cuenta.mandar(f"/{cuenta.id}/messages",
+                              {"recipient": {"comment_id": id_comentario},
+                               "message": {"text": scala["mensaje"]}}, como_json=True)
+            except ErrorDeApi as error:
+                if error.codigo in SIN_PERMISO or error.codigo in LIMITE_DE_LLAMADAS or error.codigo in TOKEN_INVALIDO:
+                    raise
+                fallos += 1
+                if fallos >= 3:
+                    print("SCALA: tres respuestas seguidas fallaron; se sigue en la próxima corrida.")
+                    raise _TresFallos() from None
+                continue
+            respondidos += 1
+            estado.respondidos.append(id_comentario)
+            estado.guardar()
+        return len(comentarios)
+
+    try:
+        for medio in publicaciones_recientes(cuenta):
+            contados = medio.get("comments_count")
+            if not medio.get("id") or contados == 0:
+                continue
+            entregados = revisar(medio["id"])
+            if isinstance(contados, int) and contados > 0 and entregados == 0:
+                mudas += 1
+        # Las historias son un tramo aparte: si Instagram no deja leerlas, no frena nada.
+        try:
+            historias = cuenta.leer(f"/{cuenta.id}/stories", {"fields": "id,timestamp",
+                                                             "limit": PUBLICACIONES_A_MIRAR}).get("data") or []
+            for historia in historias:
+                if historia.get("id"):
+                    revisar(historia["id"])
+        except ErrorDeApi:
+            pass
+    except _TresFallos:
+        return
     except ErrorDeApi as error:
         if error.codigo in SIN_PERMISO:
             print("SCALA: Instagram negó el permiso para leer o responder comentarios "
@@ -632,6 +678,93 @@ def responder_scala(cuenta, agenda, estado, ahora):
         else:
             print(f"SCALA: no se pudo seguir ({texto_de_error(error, cuenta.token)}).")
     print(f"SCALA: {vistos} comentarios para responder, {respondidos} respondidos"
+          + (f", {fallos} que no se pudieron" if fallos else "") + ".")
+    if mudas:
+        cuantas = "1 publicación" if mudas == 1 else f"{mudas} publicaciones"
+        print(f"SCALA: Instagram cuenta comentarios en {cuantas} y no entrega ninguno. Lo más probable: "
+              "la app de Meta sigue en modo desarrollo y sólo ve a quien tiene un rol en la app.")
+
+
+def solo_la_palabra(texto, palabra):
+    """True si el texto es la palabra y nada más: sin contar signos ni emojis, la tiene y no
+    pasa de tres palabras («SCALA», «Scala!», «quiero scala»)."""
+    plano = "".join(c if c.isalnum() else " " for c in str(texto or "").lower())
+    palabras = plano.split()
+    return palabra.lower() in palabras and len(palabras) <= 3
+
+
+def responder_mensajes(cuenta, agenda, estado, ahora):
+    """Le manda el link a quien escribió la palabra por mensaje (así llega la respuesta a una
+    historia). Sólo conversaciones recientes y el mensaje más nuevo de cada una. Del texto ajeno
+    sólo se compara con la palabra; de lo respondido se guarda el id del mensaje y nada más.
+    Ningún error de acá cambia el código de salida."""
+    scala = agenda.get("scala")
+    if not scala or not scala.get("por_mensaje", True):
+        return
+    propio = cuenta.usuario.lower()
+    pendientes = respondidos = fallos = 0
+    try:
+        conversaciones = cuenta.leer(f"/{cuenta.id}/conversations",
+                                     {"platform": "instagram", "fields": "id,updated_time",
+                                      "limit": CONVERSACIONES_A_MIRAR}).get("data") or []
+        for conversacion in conversaciones:
+            try:
+                reciente = ahora - instante(conversacion["updated_time"]) < datetime.timedelta(hours=HORAS_DE_CONVERSACION)
+            except (KeyError, ValueError, TypeError):
+                continue
+            if not conversacion.get("id") or not reciente:
+                continue
+            abierta = cuenta.leer(f"/{conversacion['id']}", {"fields": "messages"})
+            mensajes = (abierta.get("messages") or {}).get("data") or []
+            nuevo = None
+            for mensaje in mensajes:
+                try:
+                    cuando = instante(mensaje["created_time"])
+                except (KeyError, ValueError, TypeError, AttributeError):
+                    continue
+                if mensaje.get("id") and (nuevo is None or cuando > nuevo[0]):
+                    nuevo = (cuando, mensaje["id"])
+            if nuevo is None:
+                continue
+            cuando, id_mensaje = nuevo
+            if id_mensaje in estado.respondidos or ahora - cuando >= datetime.timedelta(hours=HORAS_DE_MENSAJE):
+                continue
+            detalle = cuenta.leer(f"/{id_mensaje}", {"fields": "id,created_time,from,to,message"})
+            quien = detalle.get("from")
+            if not isinstance(quien, dict) or not quien.get("id"):
+                continue
+            if (propio and (quien.get("username") or "").lower() == propio) or str(quien["id"]) == str(cuenta.id):
+                continue
+            if not solo_la_palabra(detalle.get("message"), scala["palabra"]):
+                continue
+            pendientes += 1
+            if respondidos >= RESPUESTAS_POR_CORRIDA:
+                continue
+            try:
+                cuenta.mandar(f"/{cuenta.id}/messages",
+                              {"recipient": {"id": quien["id"]},
+                               "message": {"text": scala["mensaje"]}}, como_json=True)
+            except ErrorDeApi as error:
+                if error.codigo in SIN_PERMISO or error.codigo in LIMITE_DE_LLAMADAS or error.codigo in TOKEN_INVALIDO:
+                    raise
+                fallos += 1
+                if fallos >= 3:
+                    print("SCALA por mensaje: tres respuestas seguidas fallaron; se sigue en la próxima corrida.")
+                    return
+                continue
+            respondidos += 1
+            estado.respondidos.append(id_mensaje)
+            estado.guardar()
+    except ErrorDeApi as error:
+        if error.codigo in SIN_PERMISO:
+            print("SCALA por mensaje: Instagram negó el permiso para leer o responder mensajes "
+                  "(instagram_business_manage_messages). No se responde nada.")
+            return
+        if error.codigo in LIMITE_DE_LLAMADAS:
+            print("SCALA por mensaje: Instagram pidió esperar; se sigue en la próxima corrida.")
+            return
+        print(f"SCALA por mensaje: no se pudo seguir ({texto_de_error(error, cuenta.token)}).")
+    print(f"SCALA por mensaje: {pendientes} para responder, {respondidos} respondidos"
           + (f", {fallos} que no se pudieron" if fallos else "") + ".")
 
 
@@ -697,6 +830,7 @@ def agenda_cmd(carpeta, ahora_texto, seco):
         else:
             print("No hay nada para publicar.")
         responder_scala(cuenta, agenda, estado, ahora)
+        responder_mensajes(cuenta, agenda, estado, ahora)
         return salida
     finally:
         estado.guardar()
