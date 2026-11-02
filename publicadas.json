@@ -79,6 +79,14 @@
       "cuando_salio": "2026-10-31T22:03:44+00:00",
       "intentos": 1,
       "error": null
+    },
+    "asi-funciona-04": {
+      "estado": "publicada",
+      "media_id": "18118590020096249",
+      "permalink": "https://www.instagram.com/reel/DfQVJu1F9Uj/",
+      "cuando_salio": "2026-11-02T22:00:32+00:00",
+      "intentos": 1,
+      "error": null
     }
   },
   "respondidos": []
