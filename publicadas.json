@@ -119,6 +119,14 @@
       "cuando_salio": "2026-11-12T22:04:26+00:00",
       "intentos": 1,
       "error": null
+    },
+    "asi-funciona-06": {
+      "estado": "pendiente",
+      "media_id": null,
+      "permalink": null,
+      "cuando_salio": null,
+      "intentos": 1,
+      "error": "reel.mp4 y tapa.jpg: Instagram no pudo procesarlo (ERROR)."
     }
   },
   "respondidos": []
