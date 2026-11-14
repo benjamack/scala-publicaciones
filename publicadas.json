@@ -121,12 +121,12 @@
       "error": null
     },
     "asi-funciona-06": {
-      "estado": "pendiente",
-      "media_id": null,
-      "permalink": null,
-      "cuando_salio": null,
-      "intentos": 1,
-      "error": "reel.mp4 y tapa.jpg: Instagram no pudo procesarlo (ERROR)."
+      "estado": "publicada",
+      "media_id": "18106042964381358",
+      "permalink": "https://www.instagram.com/reel/DfvPg3NEfE6/",
+      "cuando_salio": "2026-11-14T22:07:43+00:00",
+      "intentos": 2,
+      "error": null
     }
   },
   "respondidos": []
